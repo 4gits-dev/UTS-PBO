@@ -1,0 +1,126 @@
+class Mesin {
+    private int cc;
+    private int tenagaKuda;
+    private String nama;
+
+    public Mesin(int cc, int tenagaKuda, String nama) {
+        this.cc = cc;
+        this.tenagaKuda = tenagaKuda;
+        this.nama = nama;
+    }
+
+    public int getCc() {
+        return cc;
+    }
+
+    public int getTenagaKuda() {
+        return tenagaKuda;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setCc(int cc) {
+        this.cc = cc;
+    }
+
+    public void setTenagaKuda(int tenagaKuda) {
+        this.tenagaKuda = tenagaKuda;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+}
+
+class Motor {
+    private Mesin mesin;
+    private String nama;
+    private String warna;
+
+    public Motor(Mesin mesin, String nama, String warna) {
+        this.mesin = mesin;
+        this.nama = nama;
+        this.warna = warna;
+    }
+
+    public Mesin getMesin() {
+        return mesin;
+    }
+
+    public void setMesin(Mesin mesin) {
+        this.mesin = mesin;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getWarna() {
+        return warna;
+    }
+
+    public void setWarna(String warna) {
+        this.warna = warna;
+    }
+
+    public void nyalakanMesin() {
+        System.out.println("Mesin " + mesin.getNama() + " pada motor " + nama + " dinyalakan");
+    }
+
+    public void matikanMesin() {
+        System.out.println("Mesin " + mesin.getNama() + " pada motor " + nama + " dimatikan");
+    }
+}
+
+class Matic extends Motor {
+    public Matic(Mesin mesin, String nama, String warna) {
+        super(mesin, nama, warna);
+    }
+
+    public void gasPol() {
+        System.out.println("Motor matic " + getNama() + " digaspol");
+    }
+
+    public void rem() {
+        System.out.println("Motor matic " + getNama() + " direm");
+    }
+}
+
+class Sport extends Motor {
+    public Sport(Mesin mesin, String nama, String warna) {
+        super(mesin, nama, warna);
+    }
+
+    public void ngebut() {
+        System.out.println("Motor sport " + getNama() + " ngebut");
+    }
+
+    public void cornering() {
+        System.out.println("Motor sport " + getNama() + " cornering");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Motor matic = new Matic(new Mesin(150, 12, "NMAX"), "Yamaha NMAX", "Biru");
+        Motor sport = new Sport(new Mesin(250, 30, "Ninja 250"), "Kawasaki Ninja 250", "Hijau");
+
+        matic.nyalakanMesin();
+        ((Matic) matic).gasPol();
+        ((Matic) matic).rem();
+        matic.matikanMesin();
+
+        System.out.println();
+
+        sport.nyalakanMesin();
+        ((Sport) sport).ngebut();
+        ((Sport) sport).cornering();
+        sport.matikanMesin();
+    }
+}
